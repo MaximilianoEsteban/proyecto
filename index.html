@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Desarrollo Colaborativo</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">git</a>
+        <button class="btn">&equiv;</button>
+        <ul class="menu">
+            <li><a href="#" title="Inicio">Inicio</a></li>
+            <li><a href="about.html" title="Acerca">Acerca</a></li>
+            <li><a href="gallery.html" title="Galeria">Galeria</a></li>
+            <li><a href="#contact" title="Contacto">Contacto</a></li>
+        </ul>
+    </nav>
+    <header id="header">
+        <h1>GIT</h1>
+        <p>Desarrollo Colaborativo</p>
+    </header>
+    <section>
+        <h2>Areas de GIT</h2>
+        <article>
+            <h3>Working Directory</h3>
+            <p>
+                El area de trabajo corresponde a la carpeta del proyecto, donde vamos a realizar la modificaciones que incluyen la creacion, eliminacion y edicion de archivos. Normalmente vamos a trabajar con un editor de codigo y muy rara vez utilizaremos la linea de comandos.
+            </p>
+            <ul class="commands">
+                <li><strong>dir || ls</strong> Muestra el contenido del directorio actual.</li>
+                <li><strong>mkdir &lt;name></strong> Crea una carpeta con el nombre especificado.</li>
+                <li><strong>cd &lt;path></strong> Nos redirige al directorio seleccionado.</li>
+                <li><strong>git init</strong> Inicializa un repositorio de git.</li>
+                <li><strong>rm -rf .git</strong> Elimina el repositorio de git.</li>
+            </ul>
+        </article>
+        <article>
+            <h3>Staging Area (INDEX)</h3>
+            <p>
+                El area de control de cambios es la encargada de realizar las <em>capturas del codigo (SNAPSHOT)</em> para que luego sean almacenadas en el repositorio cuando hagamos una confirmacion. Es importante tener en cuenta que solamente podremos reestablecer los archivos a los que le hayamos hecho seguimiento.
+            </p>
+            <ul class="commands">
+                <li>
+                    <strong>git status</strong> muestra el estado de los archivos de Working Directory en relacion a los registrado en el INDEX.
+                    <ul>
+                        <li><strong>untracked</strong> archivo al que no se le esta haciendo seguimiento</li>
+                        <li><strong>staged</strong> archivo agregado al INDEX pero que no posee un commit.</li>
+                        <li><strong>commited</strong> archivo cuyos cambios ya fueron registrados en un commit.</li>
+                        <li><strong>modified</strong> archivo cuyo contenido difiere con lo registrado en el INDEX</li>
+                    </ul>
+                </li>
+                <li><strong>git add &lt;file></strong> agrega el contenido indicado al INDEX para hacerle seguimiento.</li>
+                <li><strong>git blame &lt;file></strong> muestra los datos de autor, commit, ademas de la fecha y hora de confirmacion; asi como tambien los cambios pendientes de un archivo.</li>
+                <li><strong>git rm --cached &lt;file></strong> quita del INDEX el contenido especificado (untracked)</li>
+                <li><strong>git restore --staged &lt;file></strong> restaura el estado del INDEX para los archivos seleccionados</li>
+            </ul>
+        </article>
+        <article>
+            <h3>Repository</h3>
+            <p>
+                Es el area donde se almacenan todas las confirmaciones de cambios en archivos de formato <strong>BLOB (Binary Large Object File)</strong> identificados con un numero de HASH y a los cuales podemos acceder a traves del historial, permitiendonos ver todas las modificaciones realizadas dentro de nuestro proyecto.
+            </p>
+            <ul class="commands">
+                <li><strong>git commit</strong> abre el editor de codigo para realizar la confirmacion de los cambios registrados en el INDEX.</li>
+                <li><strong>git log</strong> muestra el historial de cambios ordenado cronologicamente de manera descendente.</li>
+                <li><strong>git diff &lt;ref></strong> compara y muestra las diferencia entre el Working Directory y el commit especificado.</li>
+                <li><strong>git checkout &lt;ref></strong> mueve el apuntador HEAD a la posicion del commit especificado.</li>
+                <li><strong>git clone &lt;url></strong> crea una copia local de un proyecto almacenado en un repositorio remoto.</li>
+            </ul>
+        </article>
+    </section>
+    <section>
+        <h2>Apuntadores de GIT</h2>
+        <article>
+            <h3>HEAD</h3>
+            <p>
+                Apuntador movil que permite al usuario desplazarse dentro del historial de cambios. Se utiliza como referente de la posicion actual dentro del arbol de confirmaciones y se puede utilizar de la siguiente manera: <strong>HEAD^</strong> o <strong>HEAD~2</strong> para indicar a cuantos commit ancestros o anteriores debemos movernos.  
+            </p>
+        </article>
+        <article>
+            <h3>BRANCH</h3>
+            <p>
+                Apuntador dinamico que nos permte regresar al ultimo commit de una historia determinada, se desplaza automaticamente cada vez que generamos un commit. Podemos crear las ramas que sean necesarias, pero a pesar de las confirmaciones, todas van a tener un commit en comun.
+            </p>
+        </article>
+        <article>
+            <h3>STASH</h3>
+            <p>
+                Apuntador que se almacena en Pila temporal de Cambios, este captura el estado de los archivos en el Staging Area y genera un commit que apunta al anterior, donde se genero, y su INDEX. Al reaplicar los cambios se realiza una operacion merge, pero a la inversa, para reestablecer el Working Directory a como estaba antes de utilizar los comandos pertinentes.
+            </p>
+        </article>
+        <article>
+            <h3>TAG</h3>
+            <p>
+                Apuntador estatico que hace referencia a un commit en particular, se utiliza normalmente para el versionado del proyecto y es independiente de las ramas que este posea. Normalmente la estructura de las mismas suele ser <em>"vn.n.n"</em> como por ejemplo: <em>v0.1.0</em> para indicar version principal, subversion y compilacion o caracteristicas respectivamente.
+            </p>
+        </article>
+    </section>
+    <footer id="footer">
+        <div class="social">
+            <a href="https://github.com/c215714n/git-mj-20" target="_blank">GitHub</a>
+            <a href="https://gitlab.com/c215714n/git-mj-20" target="_blank">GitLab</a>
+            <a href="https://bitbucket.com/c215714n/git-mj-20" target="_blank">BitBucket</a>
+        </div>
+        <for id="contact">
+            <h2>Contactanos</h2>
+        </for>
+        <table class="colabs">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Usuario</th>
+                    <th>Correo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cristian Racedo</td>
+                    <td>c215714n</td>
+                    <td>cristiandracedo@hotmail.com</td>
+                </tr>
+                <tr>
+                    <td>Linus Torvald</td>
+                    <td>Tux</td>
+                    <td>lt@linux.com</td>
+                </tr>
+                <tr>
+                    <td>Bill Gates</td>
+                    <td>Windows</td>
+                    <td>billg@microsoft.com</td>
+                </tr>
+                <tr>
+                    <td>German Feriozzi</td>
+                    <td>germanferiozzi</td>
+                    <td>g_feriozzi@hotmail.com</td>
+                </tr>
+                <tr>
+                    <td>Lucila Bonaventura</td>
+                    <td>LuliBona</td>
+                    <td>lucila_lpb@hotmail.com</td>
+                </tr>
+		<tr>
+                    <td>Jorge Huck</td>
+                    <td>jbuenasideas</td>
+                    <td>jorge@buenasideas.ar</td>
+                </tr>
+                <tr>
+                    <td>Maximiliano Esteban</td>
+                    <td>MaximilianoEsteban</td>
+                    <td>maxesteban@hotmail.com</td>
+                </tr>
+            </tbody>
+        </table>
+    </footer>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
